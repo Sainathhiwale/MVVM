@@ -7,27 +7,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import dagger.android.DaggerFragment;
+import dagger.android.support.DaggerFragment;
 
 public abstract class BaseFragment extends DaggerFragment {
 
-    private Unbinder unbinder;
     private AppCompatActivity activity;
 
     @LayoutRes
     protected abstract int layoutRes();
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(layoutRes(), container, false);
-        unbinder = ButterKnife.bind(this, view);
+        ButterKnife.bind(this, view);
         return view;
-
     }
 
     @Override
@@ -49,9 +47,5 @@ public abstract class BaseFragment extends DaggerFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (unbinder!=null){
-            unbinder.unbind();
-            unbinder = null;
-        }
     }
 }

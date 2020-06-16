@@ -3,23 +3,15 @@ package com.dorvis.mvvm;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.dorvis.mvvm.data.DataManager;
-import com.dorvis.mvvm.ui.home.HomeFragment;
 import com.dorvis.mvvm.ui.login.LoginActivity;
 import com.google.android.material.internal.NavigationMenuView;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 

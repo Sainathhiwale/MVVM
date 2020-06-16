@@ -3,8 +3,8 @@ package com.dorvis.mvvm.di.component;
 import android.app.Application;
 
 import com.dorvis.mvvm.base.BaseApplication;
-import com.dorvis.mvvm.di.module.ActivityBindingModule;
-import com.dorvis.mvvm.di.module.ApplicationModule;
+import com.dorvis.mvvm.di.main.ActivityBuildersModule;
+import com.dorvis.mvvm.di.main.AppModule;
 import com.dorvis.mvvm.di.module.ContextModule;
 
 import javax.inject.Singleton;
@@ -16,8 +16,9 @@ import dagger.android.DaggerApplication;
 import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
-@Component(modules = {ContextModule.class, ApplicationModule.class, AndroidSupportInjectionModule.class,ActivityBindingModule.class})
-public interface  ApplicationComponent extends AndroidInjector<DaggerApplication> {
+@Component(modules = {ContextModule.class, AppModule.class, AndroidSupportInjectionModule.class,
+        ActivityBuildersModule.class
+})public interface  ApplicationComponent extends AndroidInjector<DaggerApplication> {
 
 
     void inject(BaseApplication baseApplication);

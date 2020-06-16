@@ -65,9 +65,7 @@ public class LoginViewModel extends ViewModel {
                  }));
     }
 
-    MutableLiveData<Boolean> login() {
-        return logIn;
-    }
+
 
    public void openStart(Context context, boolean clearStack){
          startRouter.open(context,clearStack);
