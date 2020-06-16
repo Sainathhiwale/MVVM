@@ -1,5 +1,7 @@
 package com.dorvis.mvvm.data;
 
+import com.dorvis.mvvm.data.prefs.SharedPrefsHelper;
+
 public class DataManager {
     private SharedPrefsHelper mSharedPrefsHelper;
 

@@ -1,6 +1,8 @@
 package com.dorvis.mvvm.di.module;
 
+import com.dorvis.mvvm.ui.home.HomeViewModel;
 import com.dorvis.mvvm.ui.login.LoginViewModel;
+import com.dorvis.mvvm.ui.users.allusers.AllUserViewModel;
 import com.dorvis.mvvm.utils.ViewModelFactory;
 import com.dorvis.mvvm.utils.ViewModelKey;
 
@@ -20,6 +22,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(LoginViewModel.class)
    abstract ViewModel bindLoginViewModel(LoginViewModel loginViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel.class)
+    abstract ViewModel bindHomeViewModel(HomeViewModel homeViewModel);
 
 
     @Binds

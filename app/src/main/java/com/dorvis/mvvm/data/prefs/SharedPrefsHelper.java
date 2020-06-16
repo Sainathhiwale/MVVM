@@ -1,4 +1,4 @@
-package com.dorvis.mvvm.data;
+package com.dorvis.mvvm.data.prefs;
 
 import android.content.Context;
 import android.content.SharedPreferences;

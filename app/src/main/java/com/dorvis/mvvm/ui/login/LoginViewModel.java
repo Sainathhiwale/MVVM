@@ -1,8 +1,10 @@
 package com.dorvis.mvvm.ui.login;
 
+import android.content.Context;
 import android.hardware.usb.UsbRequest;
 
 import com.dorvis.mvvm.data.model.User;
+import com.dorvis.mvvm.utils.StartMainRouter;
 
 import javax.inject.Inject;
 
@@ -17,6 +19,8 @@ public class LoginViewModel extends ViewModel {
     private final LoginRepository loginRepository;
 
     private CompositeDisposable disposable;
+    private final MutableLiveData<Boolean> logIn = new MutableLiveData<>();
+    private final StartMainRouter startRouter;
 
     private final MutableLiveData<User> useDto = new MutableLiveData<>();
     private final MutableLiveData<Boolean> repoLoadError = new MutableLiveData<>();
@@ -26,6 +30,7 @@ public class LoginViewModel extends ViewModel {
     public LoginViewModel(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
         disposable = new CompositeDisposable();
+        this.startRouter = new StartMainRouter();
     }
 
     public MutableLiveData<User> getUseDto() {
@@ -59,4 +64,12 @@ public class LoginViewModel extends ViewModel {
                      }
                  }));
     }
+
+    MutableLiveData<Boolean> login() {
+        return logIn;
+    }
+
+   public void openStart(Context context, boolean clearStack){
+         startRouter.open(context,clearStack);
+   }
 }

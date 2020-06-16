@@ -2,7 +2,6 @@ package com.dorvis.mvvm.ui.login;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,20 +11,18 @@ import android.widget.TextView;
 import com.dorvis.mvvm.MainActivity;
 import com.dorvis.mvvm.R;
 import com.dorvis.mvvm.base.BaseActivity;
-import com.dorvis.mvvm.data.SharedPrefsHelper;
+import com.dorvis.mvvm.data.prefs.SharedPrefsHelper;
 import com.dorvis.mvvm.data.model.User;
 import com.dorvis.mvvm.utils.NetworkUtils;
 import com.dorvis.mvvm.utils.Validation;
 import com.dorvis.mvvm.utils.ViewModelFactory;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
 
 import javax.inject.Inject;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity {
@@ -99,13 +96,22 @@ public class LoginActivity extends BaseActivity {
         loginViewModel.callLoginUser(user);
         sharedPrefsHelper.putUserEmail(user.getUserName());
         sharedPrefsHelper.setLoggedInMode(true);
-        Snackbar snackbar = Snackbar.make(llloginLayout, "Login Successfully!", Snackbar.LENGTH_SHORT);
-        View view1 = snackbar.getView();
-        TextView textView = (TextView) view1.findViewById(com.google.android.material.R.id.snackbar_text);
-        textView.setTextColor(Color.RED);
-        snackbar.show();
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        startActivity(intent);
+        loginViewModel.getUseDto().observe(this,user1 -> {
+            if (user.getUserName()!=null){
+                Snackbar snackbar = Snackbar.make(llloginLayout, "Login Successfully!", Snackbar.LENGTH_SHORT);
+                View view1 = snackbar.getView();
+                TextView textView = (TextView) view1.findViewById(com.google.android.material.R.id.snackbar_text);
+                textView.setTextColor(Color.GREEN);
+                snackbar.show();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }else {
+                Snackbar snackbar = Snackbar.make(llloginLayout, "Something went Wrong!", Snackbar.LENGTH_SHORT);
+                View view1 = snackbar.getView();
+                TextView textView = (TextView) view1.findViewById(com.google.android.material.R.id.snackbar_text);
+                textView.setTextColor(Color.RED);
+            }
+        });
 
     }
 
@@ -115,6 +121,7 @@ public class LoginActivity extends BaseActivity {
         if (!new Validation().hasText(etUserPassword)) valid = false;
         return valid;
     }
+
 
 
 

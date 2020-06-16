@@ -12,6 +12,8 @@ import java.util.Date;
 
 public class CommonUtils {
     private static ProgressDialog mProgressDialog;
+    private ProgressDialog progressDialog;
+    private Context context;
 
     public static void startProgressBarDialog(Context context, String message){
         mProgressDialog = new ProgressDialog(context);
@@ -69,6 +71,21 @@ public class CommonUtils {
             }
         };
         editText.setFilters(new InputFilter[]{filter});
+    }
+
+    public void showProgressDialog(String str) {
+        if (this.progressDialog == null) {
+            this.progressDialog = ProgressDialog.show(context, null, str, true, false, null);
+            return;
+        }
+        this.progressDialog.setMessage(str);
+        this.progressDialog.show();
+    }
+
+    public void hideProgressDialog() {
+        if (this.progressDialog != null) {
+            this.progressDialog.cancel();
+        }
     }
 }
 

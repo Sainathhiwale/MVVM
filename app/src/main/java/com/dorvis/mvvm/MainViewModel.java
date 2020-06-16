@@ -1,16 +1,17 @@
-package com.dorvis.mvvm.ui.home;
+package com.dorvis.mvvm;
+
 
 import javax.inject.Inject;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class MainViewModel  {
 
     private MutableLiveData<String> mText;
+
     @Inject
-    public HomeViewModel() {
+    public MainViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
     }
